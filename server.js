@@ -9,7 +9,15 @@ const jwt = require("jsonwebtoken");
 
 
 const app = express();
-app.use(cors());
+// --- Replace app.use(cors()); with this ---
+app.use(cors({
+  origin: [
+    "https://workouttrackerfrontends.vercel.app", // Your Live Vercel URL
+    "http://localhost:3000"                       // Keep this for local testing
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 const { OAuth2Client } = require("google-auth-library");
