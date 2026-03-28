@@ -10,14 +10,29 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 // --- Replace app.use(cors()); with this ---
+const cors = require('cors');
+
+const allowedOrigins = [
+  'https://workk.digital',
+  'https://www.workk.digital'
+];
+
 app.use(cors({
-  origin: [
-    "https://workouttrackerfrontends.vercel.app", // Your Live Vercel URL
-    "http://localhost:3000"                       // Keep this for local testing
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error('CORS policy block'), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Add this right below your cors config to handle the "Preflight" test
+app.options('*', cors());
 app.use(express.json());
 
 const { OAuth2Client } = require("google-auth-library");
