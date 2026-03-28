@@ -10,7 +10,7 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 // --- Replace app.use(cors()); with this ---
-const cors = require('cors');
+
 
 const allowedOrigins = [
   'https://workk.digital',
