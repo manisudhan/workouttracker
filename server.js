@@ -1,10 +1,10 @@
 // At the top of your server file
-// require('dotenv').config();
-// const express = require("express");
-// const { Pool } = require("pg");
-// const bcrypt = require("bcrypt");
-// const cors = require("cors");
-// const jwt = require("jsonwebtoken");
+require('dotenv').config();
+const express = require("express");
+const { Pool } = require("pg");
+const bcrypt = require("bcrypt");
+const cors = require("cors");
+const jwt = require("jsonwebtoken");
 // // ... rest of your imports // 1. Import jsonwebtoken
 
 
