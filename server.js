@@ -34,7 +34,7 @@ app.use(cors({
 }));
 
 // Add this right below your cors config to handle the "Preflight" test
-app.options('/:url*', cors());// ✅ FIXED: Changed '*' to '(.*)' to fix the PathError crash
+app.options(/.* /, cors());// ✅ FIXED: Changed '*' to '(.*)' to fix the PathError crash
 app.use(express.json());
 
 const { OAuth2Client } = require("google-auth-library");
