@@ -34,7 +34,7 @@ app.use(cors({
 }));
 
 // Add this right below your cors config to handle the "Preflight" test
-app.options('(.*)', cors()); // ✅ FIXED: Changed '*' to '(.*)' to fix the PathError crash
+app.options('/:url*', cors());// ✅ FIXED: Changed '*' to '(.*)' to fix the PathError crash
 app.use(express.json());
 
 const { OAuth2Client } = require("google-auth-library");
@@ -554,5 +554,5 @@ app.get('/api/weight-history', authenticateToken, async (req, res) => {
 
 
 // 🚀 Start server
-const PORT = 5000;
+
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
